@@ -1,0 +1,61 @@
+import {StyleSheet} from 'react-native';
+
+export const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#A9A9A9',
+  },
+  name: {
+    fontSize: 32,
+    color: 'white',
+    padding: 10,
+    marginTop: 15,
+    marginBottom: 15,
+    textAlign: 'center',
+    backgroundColor: '#1C1C1C',
+    borderTopWidth: 5,
+    borderBottomWidth: 5,
+    borderColor: '#8B0000',
+  },
+  descripition: {
+    borderTopWidth: 5,
+    borderBottomWidth: 5,
+    borderColor: '#DCDCDC',
+    padding: 20,
+    fontSize: 20,
+    color: '#DCDCDC',
+    backgroundColor: '#4F4F4F',
+    marginTop: 15,
+    marginBottom: 15,
+  },
+  title: {
+    color: '#8B0000',
+    backgroundColor: 'black',
+    width: '100%',
+    textAlign: 'center',
+    fontSize: 32,
+    marginTop: 15,
+    marginBottom: 15,
+    padding: 10,
+    borderTopWidth: 5,
+    borderBottomWidth: 5,
+    borderColor: '#8B0000',
+  },
+  containerCard: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    overflow: 'scroll',
+  },
+  empty: {
+    textAlign: 'center',
+    width: '100%',
+    color: '#8B0000',
+    fontSize: 20,
+    margin: 15,
+  },
+  img: {
+    borderTopWidth: 5,
+    borderBottomWidth: 5,
+    borderColor: '#8B0000',
+  },
+});

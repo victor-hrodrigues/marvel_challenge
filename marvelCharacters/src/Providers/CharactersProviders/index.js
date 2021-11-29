@@ -1,27 +1,68 @@
 import React, {createContext, useState, useContext, useEffect} from 'react';
+import {NativeModules, ToastAndroid} from 'react-native';
 import axios from 'axios';
+import {useRef} from 'react';
 
 export const CharactersContext = createContext({});
 
 export const CharactersProvider = ({children}) => {
   const [characters, setCharacters] = useState([]);
-  const [page, setPage] = useState(30);
+  const [favCharsState, setFavCharsState] = useState([]);
+  const [favCharsName, setFavCharsName] = useState([]);
+  const [Num, setDefNum] = useState(1);
+  const [offSet, setOffSet] = useState(0);
+  const scrollRef = useRef();
+
+  const moreChars = () => {
+    setOffSet(Num * 20);
+    setDefNum(Num + 1);
+    scrollRef.current?.scrollTo({
+      y: 0,
+    });
+  };
+
+  const adicionadoFavs = () => {
+    ToastAndroid.show(
+      'Personagem adicionado a os favoritos',
+      ToastAndroid.SHORT,
+    );
+  };
+
+  const duplicataResponse = () => {
+    ToastAndroid.show(
+      'O personagem ja se encontra na lista de favoritos',
+      ToastAndroid.SHORT,
+    );
+  };
 
   useEffect(() => {
-    if (characters.len !== 0) {
-      axios
-        .get(
-          'http://gateway.marvel.com/v1/public/characters?limit=30&offset=0&ts=1637868772&apikey=f04f434fb749b64888857af022a13700&hash=fd1a1ff831d289a2dcc96f32c4e32537',
-        )
-        .then(response => {
-          setCharacters(response.data.data.results);
-        });
+    axios
+      .get(
+        `http://gateway.marvel.com/v1/public/characters?limit=20&offset=${offSet}?&ts=1638159963&apikey=3aab527e676e8981b72f4b4d390cc6c3&hash=77ee8df9e711a88f1d0fe7802e98f5b6`,
+      )
+      .then(response => {
+        setCharacters(response.data.data.results);
+      });
+  }, [offSet]);
+
+  const AddToFav = char => {
+    const favchar = {
+      name: char.name,
+      img: `${char.thumbnail.path}.${char.thumbnail.extension}`,
+    };
+
+    if (favCharsName.includes(char.name)) {
+      duplicataResponse();
+    } else {
+      setFavCharsState([...favCharsState, favchar]);
+      setFavCharsName([...favCharsName, favchar.name]);
+      adicionadoFavs();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  };
 
   return (
-    <CharactersContext.Provider value={{characters}}>
+    <CharactersContext.Provider
+      value={{characters, AddToFav, favCharsState, moreChars}}>
       {children}
     </CharactersContext.Provider>
   );

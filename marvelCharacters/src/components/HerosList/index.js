@@ -1,11 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, ScrollView} from 'react-native';
+import {Button, View} from 'react-native';
 import CardHero from '../CardHero';
 import {useCharacters} from '../../Providers/CharactersProviders';
+import {styles} from './styles';
 
 const HerosList = props => {
-  const {characters} = useCharacters();
+  const {characters, moreChars} = useCharacters();
 
   return (
     <View
@@ -21,9 +22,16 @@ const HerosList = props => {
             key={character.id}
             nome={character.name}
             img={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+            char={character}
+            navigation={props.navigation}
           />
         );
       })}
+      <Button
+        title="Mais personagens"
+        onPress={moreChars}
+        style={styles.button}
+      />
     </View>
   );
 };
