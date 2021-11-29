@@ -19,8 +19,6 @@ export const ComicsProvider = ({children}) => {
       .then(response => {
         setComics(response.data.data.results);
       });
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [idChar]);
 
   return (

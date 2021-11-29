@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {
   Text,
@@ -11,8 +12,6 @@ import {styles} from './style';
 import {useComics} from '../../Providers/ComicsProviders';
 import {useSeries} from '../../Providers/SeriesProvider/series';
 import ComicCard from '../../components/ComicCard';
-
-const background = {uri: '../../assets/img/background.png'};
 
 export default props => {
   const {comics, getId} = useComics();

@@ -1,7 +1,6 @@
 import React, {createContext, useState, useContext, useEffect} from 'react';
-import {NativeModules, ToastAndroid} from 'react-native';
+import {ToastAndroid} from 'react-native';
 import axios from 'axios';
-import {useRef} from 'react';
 
 export const CharactersContext = createContext({});
 
@@ -11,14 +10,10 @@ export const CharactersProvider = ({children}) => {
   const [favCharsName, setFavCharsName] = useState([]);
   const [Num, setDefNum] = useState(1);
   const [offSet, setOffSet] = useState(0);
-  const scrollRef = useRef();
 
   const moreChars = () => {
     setOffSet(Num * 20);
     setDefNum(Num + 1);
-    scrollRef.current?.scrollTo({
-      y: 0,
-    });
   };
 
   const adicionadoFavs = () => {

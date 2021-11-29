@@ -1,7 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {Text, Image, View} from 'react-native';
-import {styles} from '../../views/PageCharacter/style';
+import {Image, View} from 'react-native';
 
 export default props => {
   return (

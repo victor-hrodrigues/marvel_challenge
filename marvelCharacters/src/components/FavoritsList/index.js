@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {Button, View, Text} from 'react-native';
+import {View, Text} from 'react-native';
 import CardHeroFav from '../CardHeroFav';
 import {useCharacters} from '../../Providers/CharactersProviders';
 
